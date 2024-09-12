@@ -1,0 +1,286 @@
+// const original = document.createElement;
+
+// document.createElement = function (tag, options) {
+//   const element = original.call(document, tag, options);
+
+//   if (tag.toLowerCase() === "iframe") {
+//     debugger;
+//     console.log("==========================================================================================");
+//     console.log(element);
+//     console.log(element.src);
+//     console.log("==========================================================================================");
+//   }
+
+//   return element;
+// };
+
+/////////////////////////////////////////
+
+// const originalAppendChild = Node.prototype.appendChild;
+
+// Node.prototype.appendChild = function (child) {
+//   if (
+//     child.tagName == "IFRAME" &&
+//     child.src == "https://1187013846746005515.discordsays.com/main.7f118811729d37ef16fc.js"
+//   ) {
+//     Node.prototype.appendChild = originalAppendChild;
+
+//     child.onload = () => {
+//       debugger;
+//       console.log(child);
+//       console.log(child.contentDocument.querySelector(`script[src="main.7f118811729d37ef16fc.js"]`).text);
+//       child.contentDocument.querySelector(`script[src="main.7f118811729d37ef16fc.js"]`).remove();
+//       let script = child.contentDocument.createElement("script");
+//       script.defer = true;
+//       script.src =
+//         "https://raw.githubusercontent.com/Xaszanyn/Reverse-Engineering-Farm-Merge-Valley/main/main-injected.js";
+//       child.contentDocument.head.appendChild(script);
+//       // child.contentWindow.document.querySelector(`script[src="main.7f118811729d37ef16fc.js"]`).src =
+//       //   "https://raw.githubusercontent.com/Xaszanyn/Reverse-Engineering-Farm-Merge-Valley/main/main-injected.js";
+//     };
+//   }
+
+//   return originalAppendChild.call(this, child);
+// };
+
+////////////////////////////
+
+// const originalAppendChild = Node.prototype.appendChild;
+
+// Node.prototype.appendChild = function (child) {
+//   console.log("*");
+//   if (
+//     child.tagName == "IFRAME" &&
+//     child.src !=
+//       "https://1187013846746005515.discordsays.com/?instance_id=i-1282870718551560203-gc-511608152291147787-530156005024333824&channel_id=530156005024333824&location_id=gc-511608152291147787-530156005024333824&launch_id=1282870718551560203&guild_id=511608152291147787&frame_id=0f9ad811-5466-4fee-ab00-bec9c1dd5eda&platform=desktop"
+//   ) {
+//     debugger;
+//     child.contentDocument.addEventListener("DOMContentLoaded", function () {
+//       console.log("==============================================================================================");
+//       console.log(child);
+//       console.log(child.contentDocument.querySelector(`script[src="main.7f118811729d37ef16fc.js"]`).text);
+//       debugger;
+
+//       child.contentDocument.querySelector(`script[src="main.7f118811729d37ef16fc.js"]`).remove();
+//       let script = child.contentDocument.createElement("script");
+//       script.defer = true;
+//       script.src =
+//         "https://raw.githubusercontent.com/Xaszanyn/Reverse-Engineering-Farm-Merge-Valley/main/main-injected.js";
+//       child.contentDocument.head.appendChild(script);
+//       // child.contentWindow.document.querySelector(`script[src="main.7f118811729d37ef16fc.js"]`).src =
+//       //   "https://raw.githubusercontent.com/Xaszanyn/Reverse-Engineering-Farm-Merge-Valley/main/main-injected.js";
+//     });
+//   }
+
+//   return originalAppendChild.call(this, child);
+// };
+
+////////////////////////////////////////////////////
+
+// const originalAppendChild = Node.prototype.appendChild;
+
+// Node.prototype.appendChild = function (child) {
+//   if (child.tagName == "IFRAME" && child.src.includes("https://1187013846746005515.discordsays.com")) {
+//     child.srcdoc = `
+
+//     <!DOCTYPE html>
+// <html data-theme="light">
+//   <head>
+//     <meta charset="UTF-8" />
+//     <meta name="mobile-web-app-capable" content="yes" />
+//     <meta name="apple-touch-fullscreen" content="yes" />
+//     <meta name="apple-mobile-web-app-capable" content="yes" />
+//     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+//     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui" />
+//     <title>Coolgames</title>
+//     <link rel="stylesheet" href="pico.min.css" />
+//     <style>
+//       :root {
+//         --sait: var(--discord-safe-area-inset-top, env(safe-area-inset-top));
+//         --saib: var(--discord-safe-area-inset-bottom, env(safe-area-inset-bottom));
+//         --sail: var(--discord-safe-area-inset-left, env(safe-area-inset-left));
+//         --sair: var(--discord-safe-area-inset-right, env(safe-area-inset-right));
+//       }
+//       body {
+//         margin: 0px;
+//         overflow: hidden;
+//         background-color: black;
+//       }
+//       html {
+//         background-color: black;
+//       }
+//     </style>
+//     <style>
+//       .feedback-dialog > article {
+//         padding-bottom: 0;
+//       }
+
+//       .feedback-dialog > article > header {
+//         position: relative;
+//         display: flex;
+//         justify-content: space-between;
+//         margin-bottom: 10px;
+//       }
+
+//       .feedback-buttons {
+//         display: flex;
+//       }
+
+//       .button-close {
+//         background: none;
+//         font-size: 24px;
+//         cursor: pointer;
+//         color: white;
+//         border-radius: 100%;
+//         margin: 0;
+//         width: 32px;
+//         height: 32px;
+//         border-color: initial;
+//         background-color: rgb(234, 103, 134);
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//       }
+
+//       .feedback-dialog > article > label {
+//         margin-bottom: calc(var(--spacing) * 0.5);
+//       }
+
+//       .feedback-dialog > article > form > textarea {
+//         height: 200px;
+//       }
+
+//       .feedback-header {
+//         background-color: rgb(51, 174, 182);
+//         color: white;
+//         padding: 10px;
+//       }
+
+//       .feedback-form {
+//         width: 100%;
+//         overflow: hidden;
+//         margin: 0;
+//       }
+
+//       .feedback-form textarea {
+//         resize: none;
+//         box-sizing: border-box;
+//       }
+
+//       .button-ok {
+//         background-color: rgb(87, 185, 57);
+//         border-color: initial;
+//         margin-right: 10px;
+//       }
+//       .button-cancel {
+//         border-color: initial;
+//         background-color: rgb(234, 103, 134);
+//         margin-left: 10px;
+//       }
+
+//       #rotate-device-container {
+//         margin: 0px;
+//         position: absolute;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         width: 100%;
+//         height: 100%;
+//         background-color: black;
+//         visibility: hidden;
+//       }
+//       @media (orientation: portrait) {
+//         #rotate-device-image {
+//           background-color: blue;
+//           width: 50vw;
+//           height: 39vw;
+//         }
+//       }
+//       @media (orientation: landscape) {
+//         #rotate-device-image {
+//           background-color: blue;
+//           width: 50vh;
+//           height: 39vh;
+//         }
+//       }
+//     </style>
+//     <script type="text/javascript" nonce="ODksOTcsMjEwLDQ4LDk0LDYwLDE1NCwxMTc=">
+//       RTCPeerConnection = null;
+//       WebTransport = null;
+//     </script>
+//     <script nonce="ODksOTcsMjEwLDQ4LDk0LDYwLDE1NCwxMTc=">
+//       !(function (f, b, e, v, n, t, s) {
+//         if (f.fbq) return;
+//         n = f.fbq = function () {
+//           n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+//         };
+//         if (!f._fbq) f._fbq = n;
+//         n.push = n;
+//         n.loaded = !0;
+//         n.version = "2.0";
+//         n.queue = [];
+//         t = b.createElement(e);
+//         t.async = !0;
+//         t.src = v;
+//         s = b.getElementsByTagName(e)[0];
+//         s.parentNode.insertBefore(t, s);
+//       })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+//       fbq("init", "1032087057665280");
+//       fbq("track", "PageView");
+//     </script>
+//     <noscript
+//       ><img
+//         height="1"
+//         width="1"
+//         style="display: none"
+//         src="https://www.facebook.com/tr?id=1032087057665280&ev=PageView&noscript=1"
+//     /></noscript>
+//     <script defer="defer" src="vendor.0b5543ab2168f8bcad5d.js"></script>
+//     <script defer="defer" src="loader.bc058ed885d4d26df0b0.js"></script>
+//     <script defer="defer" src="cg.db7ecf9a959adec39dab.js"></script>
+//     <script defer="defer" src="pixi.af068132f765538ed183.js"></script>
+//     <script
+//       defer="defer"
+//       src="https://raw.githubusercontent.com/Xaszanyn/Reverse-Engineering-Farm-Merge-Valley/main/main-injected.js"
+//     ></script>
+//   </head>
+//   <body>
+//     <dialog class="feedback-dialog" id="feedback-modal">
+//       <article>
+//         <header class="feedback-header" id="feedback-header">
+//           <span id="feedback-title">User Feedback</span>
+//           <button type="button" class="button-close" id="button-close">✕</button>
+//         </header>
+//         <label id="feedback-label"
+//           >You can help us improve the game by providing additional feedback, reporting bugs or submitting
+//           suggestions.</label
+//         >
+//         <form class="feedback-form">
+//           <label id="category-header">Category:</label>
+//           <select id="category-select" name="feedback-category"></select>
+//           <textarea id="feedback-text" placeholder="Let us know what you think!" maxlength="300"></textarea>
+//           <div class="feedback-buttons">
+//             <button type="button" class="button-ok" id="button-submit">Submit</button>
+//             <button type="button" class="button-cancel" id="button-cancel">Cancel</button>
+//           </div>
+//         </form>
+//       </article>
+//     </dialog>
+//     <dialog id="confirmation-modal" class="feedback-dialog">
+//       <article>
+//         <header id="confirmation-header" class="feedback-header">${TITLE}</header>
+//         <label id="confirmation-reason">${REASON}</label>
+//         <button type="button" id="button-confirmation" class="button-ok">OK</button>
+//       </article>
+//     </dialog>
+//     <div id="rotate-device-container"><img id="rotate-device-image" src alt /></div>
+//   </body>
+// </html>
+
+//     `;
+//     // child.src =
+//     //   "https://raw.githubusercontent.com/Xaszanyn/Reverse-Engineering-Farm-Merge-Valley/main/iframe-injected.html";
+//   }
+
+//   return originalAppendChild.call(this, child);
+// };
